@@ -40,8 +40,7 @@ function exibirmenu(){
             cidade: cidade
         }
 
-        EscopoGlobal.push(objetos.nome)
-        EscopoGlobal.push(objetos.endereço)
+        EscopoGlobal.push(objetos)
        
     
     }
@@ -54,11 +53,20 @@ function exibirmenu(){
     console.log("--------------------")
     console.log(" CÓDIGO |         NOME         |              ENDEREÇO              |    TELEFONE    |  CAPACIDADE | CIDADE")
     console.log("---------------------------------------------------------------------------------------------------------")
-    for(let i = 0; i < EscopoGlobal; i++){
 
-        console.log(`${EscopoGlobal[0]}  |   ${EscopoGlobal[1]}`)
+    if(EscopoGlobal.length === 0){
+
+        console.log("")
+
+    }
+
+    else{
+    for(let i = 0; i < EscopoGlobal.length; i++){
+
+        console.log(` ${i}  ${EscopoGlobal[i].nome}  |   ${EscopoGlobal[i].endereço}`)
     }
     }
+}
     
     function pesquisas(){
     
