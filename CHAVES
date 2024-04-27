@@ -1,0 +1,25 @@
+
+const readlineSync = require('readline-sync')
+
+
+let BancoDeDados = []
+
+function cadastro(){
+
+    let nome = readlineSync.question("Nome: ")
+
+    let perguntas = {
+
+        nomes: nome
+    }
+
+    BancoDeDados.push[perguntas]
+}
+
+function sorteio(){
+
+    let sorte = Math.floor( Math.random(BancoDeDados.length))
+    console.log(`O ladrão escolhido foi ${BancoDeDados[sorte]}`)
+    
+}
+
