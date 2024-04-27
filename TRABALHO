@@ -1,30 +1,22 @@
-function exibirmenu(){
+let readlineSync = require('readline-sync')
+
+function mostrarMenu(){
  
     console.log("===== ABRIGOS TEMPORÁRIOS =====")
     console.log("1. Cadastrar abrigo")
     console.log("2. Listar abrigos")
     console.log("3. Procurar abrigo")
     console.log("4. Sair")
+    console.log('===============================')
+}
     
-    }
-    
-    
-    let ABRIGOS = [
-    
-        {codigo1: "001", nome1: "Casa do Caminho" , endereço1: "Rua do Amanhecer, 123, Centro", telefone1: "(11) 1234-5678", capacidade1: 20, cidade1: "CANOAS"} ,
-        {codigo2: "002", nome2: "Abrigo Esperança", endereço2: "Rua da Solidariedade, 321, Bairro", telefone2: "(11) 9876-5432", capacidade2: 30, cidade2: "ESTRELA" } ,
-        {codigo3: "003", nome3: "Casa dos Amigos", endereço3: " Av. da Fraternidade, 456, Centro", telefone3: "(11) 5555-4444", capacidade3: 25,cidade3: "NOVO HAMBURGO" } ,
-        {codigo4: "004", nome4: "Abrigo do Bem", endereço4: "Rua da Esperança, 789, Bairro", telefone4: "(11) 7777-8888", capacidade4: 35, cidade4: "CANOAS" } ,
-        {codigo5: "005", nome5: "Casa dos Anjos", endereço5: "Av. da Paz, 159, Centro", telefone5: "(11) 3333-2222", capacidade5: 15, cidade5: "PORTO ALEGRE" }
-    ]
-    
-    let EscopoGlobal = []
+let escopoGlobal = []
     
     
-    let readlineSync = require('readline-sync')
-    
-    function cadastro() {
-    
+
+  // cadastrar abrigos  
+ function cadastro() {
+    console.log('\n------ CADASTRO DE ABRIGO ------')
         let nome = readlineSync.question("Nome: ")
         let endereço = readlineSync.question("Endereço: ")
         let telefone = readlineSync.question("Telefone: ")
@@ -40,118 +32,75 @@ function exibirmenu(){
             cidade: cidade
         }
 
-        EscopoGlobal.push(objetos)
+        escopoGlobal.push(objetos)
        
     
     }
 
+  //listar os abrigos cadastrados  
+function listagem(){
     
-    function listagem(){
-    
-    console.log(" --------------------")
-    console.log(" LISTAGEM DE ABRIGOS:")
-    console.log("--------------------")
+    console.log("--------------------------------------------------------------------------------------------------------------------------------------------")
+    console.log("                                                        LISTAGEM DE ABRIGOS:                      ")
+    console.log("--------------------------------------------------------------------------------------------------------------------------------------------")
 
-
-
-    if(EscopoGlobal.length === 0){
-
-        console.log("")
-
-    }
-
-    else{
-    for(let i = 0; i < EscopoGlobal.length; i++){
-
-        console.log(` ${i}     | NOME: ${EscopoGlobal[i].nome}  |   ENDEREÇO: ${EscopoGlobal[i].endereço}  |  TELEFONE: ${EscopoGlobal[i].telefone} | CAPACIDADE: ${EscopoGlobal[i].capacidade}  |  CIDADE: ${EscopoGlobal[i].cidade}`)
+    if(escopoGlobal.length === 0){
+        console.log('')
+    } else {
+        for(let i = 0; i < escopoGlobal.length; i++) { 
+        console.log(` ${i}     | NOME: ${escopoGlobal[i].nome}  |   ENDEREÇO: ${escopoGlobal[i].endereço}  |  TELEFONE: ${escopoGlobal[i].telefone} | CAPACIDADE: ${escopoGlobal[i].capacidade}  |  CIDADE: ${escopoGlobal[i].cidade}`)
+        
     }
     
-    console.log("---------------------------------------------------------------------------------------------------------")
+    console.log("--------------------------------------------------------------------------------------------------------------------------------------------")
     }
 }
+//procurar abrigo    
+function pesquisarAbrigo(){
     
-    function pesquisas(){
-    
-    let pesquisa = readlineSync.question("Qual cidade você esta? ")
-    
-            //if(pesquisa === ABRIGOS[0].cidade1 || pesuisa === ABRIGOS[1].cidade2 || pesquisa === ABRIGO[2].cidade3 || pesuisa === ABRIGO[3].cidade4 || pesuisa === ABRIGO[4].cidade5){
+    let pesquisa = readlineSync.question("Qual cidade você esta? ") //canoas
+    console.log(`\n`)
+    console.log('\n-------------- PROCURAR ABRIGO ------------------------------------------------------------')
+   
         
-            if(pesquisa.toUpperCase() === ABRIGOS[0].cidade1){ //CANOAS
-                console.log("--------------------")
-                console.log("LISTAGEM DE ABRIGOS:")
-                console.log("--------------------")
-                console.log("CÓDIGO |         NOME         |              ENDEREÇO              |   TELEFONE   |  CAPACIDADE | CIDADE")
-                console.log("---------------------------------------------------------------------------------------------------------")
-                console.log()
-                console.log(`\n`)
-            } else if(pesquisa.toUpperCase()  === ABRIGOS[1].cidade2){ //ESTRELA2
+    
 
-                console.log("--------------------")
-                console.log("LISTAGEM DE ABRIGOS:")
-                console.log("--------------------")
-                console.log("CÓDIGO |         NOME         |              ENDEREÇO              |   TELEFONE   |  CAPACIDADE | CIDADE")
-                console.log("---------------------------------------------------------------------------------------------------------")
-                console.log(``)
-                console.log(`\n`)
-            }  else if(pesquisa.toUpperCase() === ABRIGOS[2].cidade3){ //NOVO HAMBURGO
+    for (let i = 0; i <escopoGlobal.length; i++) { 
+        if (escopoGlobal[i].cidade == pesquisa) {
+            console.log(`CÓDIGO: ${i} | NOME: ${escopoGlobal[i].nome} | ENDEREÇO: ${escopoGlobal[i].endereço} | TELEFONE: ${escopoGlobal[i].telefone} | CAPACIDADE: ${escopoGlobal[i].capacidade} | CIDADE: ${escopoGlobal[i].cidade}`);
+        }
+
+    } 
+    console.log('\n-------------- PROCURAR ABRIGO ------------------------------------------------------------');
+}
+   
     
-                console.log("--------------------")
-                console.log("LISTAGEM DE ABRIGOS:")
-                console.log("--------------------")
-                console.log("CÓDIGO |         NOME         |              ENDEREÇO              |   TELEFONE   |  CAPACIDADE | CIDADE")
-                console.log("---------------------------------------------------------------------------------------------------------")
-                console.log(``)
-                console.log(`\n`)
-    
-            } else if(pesquisa.toUpperCase() === ABRIGOS[4].cidade5){ //PORTO ALEGRE
-    
-                console.log("--------------------")
-                console.log("LISTAGEM DE ABRIGOS:")
-                console.log("--------------------")
-                console.log("CÓDIGO |         NOME         |              ENDEREÇO              |   TELEFONE   |  CAPACIDADE | CIDADE")
-                console.log("---------------------------------------------------------------------------------------------------------")
-                console.log(``)
-                console.log(`\n`)
-            } else{
-                console.log("Não existe abrigo na cidade inserida!")
-                console.log(`\n`)
-            }
-    }
-    
-    function escolha(opçao){
-        switch(opçao){
+    function escolha(){
+        let continua = true //
+
+    while (continua) {
+
+        console.log(`\n`)
+        mostrarMenu()
+        console.log(`\n`)
+        let opcao = readlineSync.question('ESCOLHA UMA OPCAO:')
+
+        switch (opcao) {
             case '1':
                 cadastro()
                 break;
-    
             case '2':
                 listagem()
                 break
-    
             case '3':
-               pesquisas()
+               pesquisarAbrigo()
                 break;
-    
             case '4':
                 console.log('Encerramento')
-                return true;
-            default:
-                console.log()
-    
-        }
-        return false
-    }
-    
-    function main(){
-    
-    
-        let encerrar = false
-    
-        while (!encerrar){
-            exibirmenu()
-            let opçao = readlineSync.question('Digite o número da opção desejada: ')
-            encerrar = escolha(opçao)
+                continua = false
+            break
         }
     }
-    main()
+}
+    escolha()   
     
