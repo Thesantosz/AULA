@@ -3,23 +3,147 @@ const readlineSync = require('readline-sync')
 
 
 let BancoDeDados = []
+let objetosRoubados = []
 
-function cadastro(){
+    
+function objetos(){
+    console.log('\n------ CADASTRO DE OBJETO ROUBADO------')
+    let pergunta = readlineSync.question("Objeto: ")
 
-    let nome = readlineSync.question("Nome: ")
+    let roubo = {
 
-    let perguntas = {
+        objeto: pergunta
+    }
+    
+    objetosRoubados.push[roubo]
+} 
 
-        nomes: nome
+function listarObjetos(){
+
+    if(objetosRoubados.length === 0){
+        console.log("--------------------------------------------------------------------------------------------------------------------------------------------")
+        console.log("                                                          OBJETOS:                     ")
+        console.log("--------------------------------------------------------------------------------------------------------------------------------------------")
+    }
+    else{
+        console.log("--------------------------------------------------------------------------------------------------------------------------------------------")
+        console.log("                                                          OBJETOS:                     ")
+        console.log("--------------------------------------------------------------------------------------------------------------------------------------------")
+
+        for(let i = 0; i < objetosRoubados.length; i++){
+        console.log(`${i} |  NOME: ${objetosRoubados[i].objeto}`)
+        }
+    }
     }
 
-    BancoDeDados.push[perguntas]
-}
+
+  // cadastrar abrigos  
+ function cadastro() {
+    console.log('\n------ CADASTRO DE MORADOR------')
+        let nome = readlineSync.question("Nome: ")
+       
+        
+        //
+        let objetos = {
+            nome: nome
+            
+        }
+
+        BancoDeDados.push(objetos)
+       
+    
+    }
 
 function sorteio(){
 
-    let sorte = Math.floor( Math.random(BancoDeDados.length))
-    console.log(`O ladrão escolhido foi ${BancoDeDados[sorte]}`)
-    
+    let sorte = Math.floor( Math.random() * BancoDeDados.length )  //Math.floor arredonda valores  Math.ramdom valor entre 0 e 1
+
+    if(BancoDeDados.length === 0){
+        console.log(" ")
+    }
+    else{
+    console.log(`${`\n`}  O ladrão principal do roubo é: ${`\n`}`)
+    console.log(`    ----->  ${BancoDeDados[sorte].nome}  <-----${`\n`}`)
+    }
 }
 
+function moradores(){
+
+    if(BancoDeDados.length === 0){
+        console.log("--------------------------------------------------------------------------------------------------------------------------------------------")
+        console.log("                                                          MORADORES:                     ")
+        console.log("--------------------------------------------------------------------------------------------------------------------------------------------")
+    }
+    else{
+        console.log("--------------------------------------------------------------------------------------------------------------------------------------------")
+        console.log("                                                          MORADORES:                     ")
+        console.log("--------------------------------------------------------------------------------------------------------------------------------------------")
+
+        for(let i = 0; i < BancoDeDados.length; i++){
+        console.log(`${i} |  NOME: ${BancoDeDados[i].nome}`)
+        }
+    }
+
+    console.log(objetosRoubados)
+}
+
+
+function menu(){
+
+    console.log(`${`\n`}===== Mistério na Vila: Quem é o Ladrão? =====${`\n`}`)
+    console.log("1. Investigar Ladrão")
+    console.log("2. Cadastrar Morador")
+    console.log("3. Visualizar Moradores")
+    console.log("4. Adicionar Objeto Roubado")
+    console.log("5. Visualizar Objetos Roubados")
+    console.log("6. Sair")
+    console.log(`${`\n`}===============================`)
+}
+
+
+function escolha(){
+
+    let continua = true 
+
+    while (continua){
+ 
+     console.log(`${`\n`} ${menu()} ${`\n`}`)
+
+     let escolha = readlineSync.question(`Escolha uma opção:  ${`\n`}`)
+    
+    switch (escolha){
+
+        case "1" || "Investigar Ladrão":
+        sorteio()
+        break
+
+        case "2" || "Cadastrar Morador": 
+        cadastro()
+        break
+
+       case "3" || "Visualizar Moradores":
+        moradores()
+       break
+
+      case "4" || "Adicionar Objeto Roubado":
+        objetos()
+      break
+      
+      case "5" || "Visualizar Objetos Roubados":
+        listarObjetos()
+        
+      break
+      
+      case "6" || "Sair":
+        console.log("Encerramento")
+        continua = false
+      break
+
+      default:
+        console.log("Escolha apenas opções disponiveis")
+
+    }
+    }
+}
+
+escolha()
