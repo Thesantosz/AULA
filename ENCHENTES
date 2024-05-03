@@ -1,0 +1,162 @@
+const readlineSync = require('readline-sync')
+
+let Escopo = []
+
+function menu(){
+
+    console.log(`${`\n`}============= REGISTROS DE INCIDENTES =============${`\n`}`)
+    console.log("1. REGISTRAR INCIDENTES")
+    console.log("2. SETORES HUMANITÁRIO DE ABRIGOS")
+    console.log(`3. DETALHES SOBRE AS ENCHENTES `)
+    console.log(`4. SAIR ${`\n`}`)
+    console.log(`===================================================${`\n`}`)
+}
+
+function registro(){ /////////////////////
+
+    console.log("REGISTROS")
+}
+
+function menuDetalhes(){
+
+    console.log("1. ÁREAS DE RISCO")
+    console.log("2. VOLUME DA ÁGUA ATUALMENTE")
+    console.log("3. NÚMERO DE DESABRIGADOS")
+    console.log("4. SAIR")
+}
+
+function area(){ /////////////
+    console.log(`${`\n`}  AREAAAAA`)
+}
+
+function volume(){ /////////////
+    console.log(`${`\n`}  VOLUMEEEEEEEEEEE`)
+}
+
+function desabrigados(){ /////////////
+    console.log(`${`\n`}  DESABRIGADOSSSSSSSSSSSS`)
+}
+
+function escolha2(){
+
+    let continua2 =  true
+
+    while(continua2){
+
+        menuDetalhes()
+
+        let opção2 = readlineSync.question("Escolha uma opção: ")
+
+        switch (opção2){
+
+            case "1":
+            area() /////////////////////////////
+            break
+
+            case "2":
+            volume() //////////////////////////////////////
+            break
+
+            case "3": 
+                desabrigados() //////////////////////////////////////////////
+                break
+
+            case "4":
+                continua2 = false 
+                break
+
+                default:
+                    console.log("Insira apenas opções disponiveis")
+
+        }   
+}
+}
+
+function abrigos(){ ///////////////
+
+
+    console.log(`============= Para cadastrar um novo abrigo digite: CADASTRAR ABRIGO OU 1 ============${`\n`}`)
+    console.log(`============= Para listar os abrigos disponíveis = digite: LISTAR ABRIGOS OU 2 ============${`\n`}`)
+
+    let pergunta = readlineSync.question("Escolha uma opção: ")
+
+    if(pergunta === "1" || pergunta.toUpperCase() === "CADASTRAR ABRIGO"){
+
+        cadastroDeAbrigos()
+    }
+
+    else if(pergunta === "2" || pergunta.toUpperCase() === "LISTAR ABRIGOS"){
+
+        listar()
+    }
+}
+
+function cadastroDeAbrigos(){ ////////////////////
+
+        let nome = readlineSync.question("Nome: ")
+        let localização = readlineSync.question("Endereço: ")
+        let capacidade = readlineSync.question("Capacacidade de Lotação: ")
+    
+        console.log(`${`\n`}CADASTRO EFETUADO!`)
+
+       let informações = {
+
+        nome: nome ,
+        localização: localização ,
+        capacidade: capacidade
+       }
+    
+    Escopo.push[informações]
+
+
+}
+
+function listar(){ /////////////////////
+
+
+        if(Escopo.length === 0){
+            console.log("Não possui abrigos disponíveis no momento!")
+        }
+
+        else{
+            for(let i = 0; i < Escopo.length; i++){
+            console.log(` ${i} | NOME: ${Escopo[i].nome} | LOCALIZAÇÃO: ${Escopo[i].localização} | CAPACIDADE DE LOTAÇÃO: ${Escopo[i].capacidade}`)
+            }
+        }
+    }
+
+function escolha(){
+
+    let continua =  true
+
+    while(continua){
+
+        menu()
+        let opção = readlineSync.question("Escolha uma opção: ")
+
+        switch (opção){
+
+            case "1":
+            registro()
+            break
+
+            case "2":
+                abrigos()
+            break
+
+            case "3": 
+                escolha2()
+                break
+
+            case "4":
+                continua = false 
+                break
+
+                default:
+                    console.log("Insira apenas opções disponiveis")
+
+        }   
+}
+}
+
+escolha()
